@@ -1,5 +1,6 @@
 <?php
+require 'Obtener_datos_previred.php';
 
-include 'includes/Obtener_datos.php';
+$pr = new Previred();
 
-get_UF();
+print("Data: " . $pr->get_AFC_contrato_plazo_indefinido_mas());
