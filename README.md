@@ -1,5 +1,6 @@
 # previred-php-api
 
+Desarrollado con # PHP 8
 
 API no oficial que facilita la obtención de los datos desde [Previred](https://www.previred.com/web/previred/indicadores-previsionales)
 <br> Se puede obtener actualmente:
