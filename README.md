@@ -1,7 +1,7 @@
 # previred-php-api
 
 > [!NOTE]
-Desarrollado con <b>PHP 8</b>
+Compatible con <b>PHP 7/8</b>
 
 API no oficial que facilita la obtención de los datos desde [Previred](https://www.previred.com/indicadores-previsionales)
 <br> Se puede obtener actualmente:
@@ -9,14 +9,12 @@ API no oficial que facilita la obtención de los datos desde [Previred](https://
 * Valor UF (Mes reciente)
 * Valor UTM
 * UTA
-* datos de Rentas topes imponibles
-* rentas minimas imponibles
-* ahorro previsional voluntario
-* deposito convenido
+* Datos de rentas topes imponibles
+* Rentas mínimas imponibles
+* Ahorro previsional voluntario (APV)
+* Depósito convenido
 * AFC
-* Tabla afp
-
-Faltan algunas cosas que arreglar en este proyecto, por lo tanto no creo que les funcione a la primera sin tener que meter mano a los archivos. Un día que tenga tiempo lo arreglaré.
+* Tabla AFP
 
 > [!WARNING]
 No se recomienda utilizar esta API para servicios en producción, ya que, cada cierto tiempo Previred puede cambiar de

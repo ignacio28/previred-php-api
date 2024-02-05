@@ -53,7 +53,7 @@ function getJsonData($grouped = false) {
     $previred = new Previred();
     $previredObjMethods = $previred->getPreviredObjMethods();
 
-    if ($grouped == "true") {
+    if ($grouped) {
         // Imprimir la cadena JSON pero agrupando por "group"
         $groupedData = array();
 
