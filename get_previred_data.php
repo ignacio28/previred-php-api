@@ -15,6 +15,7 @@ class Previred
      * @author Ignacio Ramírez Riquelme
      */
     private function getData($node) {
+        // Para evitar la sobrecarga de solicitudes a la página y disminuir el tiempo de respuesta, solo se conectará 1 vez por instancia.
         // Si ya se ha realizado una conexión previa, se utiliza el resultado almacenado
         if (self::$doc !== null) {
             $elems = self::$doc->getElementsByTagName("td");
@@ -37,7 +38,6 @@ class Previred
         // Cierra el recurso 'cURL' y libera recursos del sistema
         curl_close($curl);
 
-        // Para evitar la sobrecarga de solicitudes a la página y disminuir el tiempo de respuesta, solo se conectará 1 vez por instancia.
         // set error level
         $internalErrors = libxml_use_internal_errors(true);
 
@@ -79,16 +79,28 @@ class Previred
     // ================================================================================
 
     // Obtener UF
-    public function get_UF()
+    public function get_current_UF()
     {
         return new PreviredObj(
-            //self::getData(2),
-            "UF",
+            "UF Actual",
             self::getData(4),
             null,
             self::getData(3)
         );
     }
+
+    
+    // Obtener UF (Anterior)
+    public function get_prev_UF()
+    {
+        return new PreviredObj(
+            "UF Mes anterior",
+            self::getData(6),
+            null,
+            self::getData(5)
+        );
+    }
+
 
     // Obtener UTM
     public function get_UTM()
@@ -234,7 +246,8 @@ class Previred
         return new PreviredObj(
             self::getData(45),
             self::getData(46),
-            self::getData(37)
+            self::getData(37),
+            self::getData(40)
         );
     }
 
@@ -242,7 +255,8 @@ class Previred
         return new PreviredObj(
             self::getData(48),
             self::getData(49),
-            self::getData(37)
+            self::getData(37),
+            self::getData(40)
         );
     }
 
@@ -251,7 +265,8 @@ class Previred
         return new PreviredObj(
             self::getData(51),
             self::getData(52),
-            self::getData(37)
+            self::getData(37),
+            self::getData(40)
         );
     }
 
@@ -381,7 +396,7 @@ class PreviredObj {
     private $type;
     private $group;
     private $category;
-    protected static $args = array('(*)', '(**)', ':');
+    protected static $args = array('(*)', '(**)', ':'); // Elementos a eliminar de una cadena
 
     function __construct($name = null, $value = 0, $group = "OTROS", $category = "", $type = "") {
         $this->name  = deleteParameters($name, self::$args);
@@ -394,10 +409,8 @@ class PreviredObj {
     protected function setType($val) {
         $is_cash    = str_contains($val, "$");
         $is_percent = str_contains($val, "%");
-        if ($is_percent) {
-            return "%";
-        }
-        return "$";
+        
+        return $is_percent ? "%" : "$";
     }
 
     public function getName() {

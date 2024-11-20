@@ -1,5 +1,5 @@
 <?php
-require_once "Obtener_datos_previred.php";
+require_once "get_previred_data.php";
 
 
 /**

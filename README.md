@@ -239,7 +239,7 @@ posición algunos datos en la página web provocando lecturas erróneas.
 ```
 
 
-* Formato <b>agrupado</b>
+* Formato <b>agrupado</b> (/grouped=true)
 
 ```JSON
 {
